@@ -3,47 +3,69 @@ package starter.reqres;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+import starter.reqres.Utils.Constant;
 
 import java.io.File;
 
 public class ReqresAPI {
 
-    public static  String BASE_URL ="https://reqres.in"; // ini base url
-
-    public static final String DIR = System.getProperty("user.dir"); //ini untuk mendapatkan sstem properti location project
-
-    //path
-    public static String JSON_REQUEST = DIR+"/src/test/resources/JSON/Request"; //path json Request
-
-    public  static  String GET_LIST_USERS =  BASE_URL+ "/api/users?page={page}"; // untuk URL get list users
-
-    public static String POST_CREATE_USERS = BASE_URL + "/api/users"; // untuk URL post create users
-    public static String PUT_UPDATE_USERS = BASE_URL+ "/api/users/{id}"; // untuk URL put create users
-
-    public static String DELETE_USERS = BASE_URL+ "/api/users/{id}"; // untuk URL delete users
+    public static String GET_LIST_USERS = Constant.BASE_URL + "/api/users?page={page}"; //untuk URL get list users
+    public static String POST_CREATE_USERS = Constant.BASE_URL + "/api/users"; //untuk URL post create users
+    public static String PUT_UPDATE_USERS = Constant.BASE_URL + "/api/users/{id}"; //untuk URL put create users
+    public static String DELETE_USERS = Constant.BASE_URL + "/api/users/{id}"; //untuk URL delete users
+    public static String LOGIN_USERS = Constant.BASE_URL + "/api/login"; //untuk URL login users
+    public static String REGISTER_USERS = Constant.BASE_URL + "/api/register"; //untuk URL Register users
 
     //Method
-    @Step("Get list users")
-    public  void getListUsers(int page){
-        SerenityRest.given().pathParam("page",page);
+    @Step("Get list users") //Untuk valid get list user
+    public void getListUsers(int page) {
+        SerenityRest.given().pathParam("page", page);
+    }
+
+    @Step("Get list users invalid") //Untuk valid get list user
+    public void getListUsersInvalid(String page) {
+        SerenityRest.given().pathParam("page", page);
     }
 
     @Step("Post create user")
-    public void postCreateUser(File json){
+    public void postCreateUser(File json) {
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);
     }
+
     @Step("Put update user")
-    public  void putUpdatUser(int id, File json){
+    public void putUpdatUser(int id, File json) {
         SerenityRest.given().pathParam("id", id)
-                .contentType(ContentType.JSON )
+                .contentType(ContentType.JSON)
                 .body(json);
     }
 
-    @Step ("Delet user")
-    public void deleteUser(int id){
-        SerenityRest.given().pathParam("id",id);
+    @Step("Delete user")
+    public void deleteUser(int id) {
+        SerenityRest.given().pathParam("id", id);
     }
+
+    @Step("Login user")
+    public void loginUser(File json) {
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+
+//    @Step("Put login user")
+//    public  void putLoginUser(String email, String password, File json){
+//        SerenityRest.given().pathParam("email",email).pathParam("password",password)
+//                .contentType(ContentType.JSON )
+//                .body(json);
+//    }
+
+    @Step("Register user")
+    public void registerUser(File json) {
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+
 
 }

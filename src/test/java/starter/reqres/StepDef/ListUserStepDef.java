@@ -4,9 +4,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import starter.reqres.ReqresAPI;
+import starter.reqres.Utils.Constant;
+import starter.reqres.Utils.ReqresResponses;
+
+import java.io.File;
 
 import static org.hamcrest.Matchers.equalTo;
 
@@ -32,7 +37,21 @@ public class ListUserStepDef {
 
     @And("Response body page should be {int}")
     public void responseBodyShouldPageShouldBePage(int page) {
-        SerenityRest.then().body("page",equalTo(page));
+        SerenityRest.then().body(ReqresResponses.PAGE,equalTo(page));
     }
+
+    @And("Validate json schema list user")
+    public void validateJsonSchemaListUser() {
+        File jsonSchema = new File(Constant.JSON_SCHEMA+"/ListUserSchema.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonSchema));
+    }
+
+    //Negative case
+    @Given("Get list user with page {string}")
+    public void getListUserWithPage(String page) {
+        reqresAPI.getListUsersInvalid(page);
+
+    }
+
 
 }
