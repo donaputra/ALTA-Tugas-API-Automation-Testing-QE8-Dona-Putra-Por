@@ -18,7 +18,7 @@ Feature: Register User feature reqres API
     And Response body id should be 4 and token "QpwL5tke4Pnpja7X4"
     And Validate json schema register
 
-  ################################### BELOW HERE ARE NEGATIVE CASES ###################################
+  #______________________________BELOW HERE ARE NEGATIVE CASES______________________________#
 
       #Json file with without password
   @Tugas @NegativeCase

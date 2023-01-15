@@ -21,7 +21,7 @@ public class CreateUserStepDef {
 
     @Given("Post create user with valid json")
     public void postCreateUserWithValidJson() {
-        File json = new File(Constant.JSON_REQUEST + "/RequestCreateUser.json");
+        File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUser.json");
         reqresAPI.postCreateUser(json);
     }
 
@@ -44,22 +44,22 @@ public class CreateUserStepDef {
     }
 
     //Negative Case with file json_01
-    @Given("Post create user with invalid json_01")
-    public void postCreateUserWithInvalidJson() {
-        File json = new File(Constant.JSON_REQUEST + "/RequestCreateUserInvalid_01.json");
+    @Given("Post create user with invalid string json")
+    public void postCreateUserWithInvalidStringJson() {
+        File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUserInvalid_String.json");
         reqresAPI.postCreateUser(json);
     }
 
     //Negative Case with file json_02
-    @Given("Post create user with invalid json_02")
-    public void postCreateUserWithInvalidJson_() {
-        File json = new File(Constant.JSON_REQUEST + "/RequestCreateUserInvalid_02.json");
+    @Given("Post create user without job json")
+    public void postCreateUserWithInvalidJobJson() {
+        File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUserInvalid_Job.json");
         reqresAPI.postCreateUser(json);
     }
 
-    @And("Response body name should be {string}")
-    public void responseBodyNameShouldBe(String arg0) {
-        File json = new File(Constant.JSON_REQUEST + "/RequestCreateUserInvalid_02.json");
+    @And("Post create user with invalid name json")
+    public void postCreateUserWithInvalidNameJson() {
+        File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUserInvalid_Name.json");
         reqresAPI.postCreateUser(json);
     }
 

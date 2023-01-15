@@ -24,7 +24,7 @@ public class RegisterUserStepDef {
     //Json file with email : eve.holt@reqres.i
     @Given("Post register user with valid json")
     public void postCreateUserWithInvalidJson() {
-        File json = new File(Constant.JSON_REQUEST + "/RequestRegisterUser.json");
+        File json = new File(Constant.JSON_REQUEST_REGISTER_USER + "/RequestRegisterUser.json");
         reqresAPI.registerUser(json);
     }
 
@@ -55,7 +55,7 @@ public class RegisterUserStepDef {
     //Json file without password
     @Given("Post register user with invalid password json")
     public void postRegisterUserWithInvalidJson() {
-        File json = new File(Constant.JSON_REQUEST + "/RequestRegisterUserInvalid_Password.json");
+        File json = new File(Constant.JSON_REQUEST_REGISTER_USER + "/RequestRegisterUserInvalid_Password.json");
         reqresAPI.registerUser(json);
     }
 
@@ -74,14 +74,14 @@ public class RegisterUserStepDef {
     //Json file without email
     @Given("Post register user with invalid email json")
     public void postRegisterUserWithInvalidEmailJson() {
-        File json = new File(Constant.JSON_REQUEST + "/RequestRegisterUserInvalid_Email.json");
+        File json = new File(Constant.JSON_REQUEST_REGISTER_USER + "/RequestRegisterUserInvalid_Email.json");
         reqresAPI.registerUser(json);
     }
 
     //Json file without email and password
     @Given("Post register user with invalid email and password json")
     public void postRegisterUserWithInvalidEmailAndPasswordJson() {
-        File json = new File(Constant.JSON_REQUEST + "/RequestRegisterUserInvalid_Email_Password.json");
+        File json = new File(Constant.JSON_REQUEST_REGISTER_USER + "/RequestRegisterUserInvalid_Email_Password.json");
         reqresAPI.registerUser(json);
     }
 
