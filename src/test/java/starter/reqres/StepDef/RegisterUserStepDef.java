@@ -47,7 +47,7 @@ public class RegisterUserStepDef {
 
     @And("Validate json schema register")
     public void validateJsonSchemaRegisterUser() {
-        File jsonSchema = new File(Constant.JSON_SCHEMA + "/RegisterUserSchema.json");
+        File jsonSchema = new File(Constant.JSON_SCHEMA_REGISTER_USER + "/RegisterUserSchema.json");
         SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonSchema));
     }
 
@@ -65,9 +65,9 @@ public class RegisterUserStepDef {
                 .body(ReqresResponses.ERROR, equalTo(error));
     }
 
-    @And("Validate invalid json schema register")
+    @And("Validate invalid register json schema")
     public void validateInvalidJsonSchemaRegister() {
-        File jsonSchema = new File(Constant.JSON_SCHEMA+"/InvalidRegisterUserSchema.json");
+        File jsonSchema = new File(Constant.JSON_SCHEMA_REGISTER_USER+"/InvalidRegisterUserSchema.json");
         SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonSchema));
     }
 

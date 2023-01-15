@@ -20,6 +20,7 @@ public class ListUserStepDef {
     @Steps
     ReqresAPI reqresAPI;
 
+    //Positive Cases
     @Given("Get list user with page {int}")
     public void getListUserWithPage (int page){
         reqresAPI.getListUsers(page);
@@ -42,16 +43,14 @@ public class ListUserStepDef {
 
     @And("Validate json schema list user")
     public void validateJsonSchemaListUser() {
-        File jsonSchema = new File(Constant.JSON_SCHEMA+"/ListUserSchema.json");
+        File jsonSchema = new File(Constant.JSON_SCHEMA_LIST_USER+"/ListUserSchema.json");
         SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonSchema));
     }
 
-    //Negative case
+    //Negative Cases
     @Given("Get list user with page {string}")
     public void getListUserWithPage(String page) {
         reqresAPI.getListUsersInvalid(page);
-
     }
-
 
 }

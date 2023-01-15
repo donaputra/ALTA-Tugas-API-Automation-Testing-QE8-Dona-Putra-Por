@@ -12,7 +12,7 @@ public class DeleteUserStepDef {
     @Steps
     ReqresAPI reqresAPI;
 
-    //Scenario 1
+    //Positive Cases
     @Given("Delete user with valid id {int}")
     public void deleteUserWithValidIdId(int id) {
         reqresAPI.deleteUser(id);
@@ -23,9 +23,7 @@ public class DeleteUserStepDef {
         SerenityRest.when().delete(ReqresAPI.DELETE_USERS);
     }
 
-
-    //Negative Case
-
+    //Negative Cases
     @Given("Delete user with invalid id {int}")
     public void deleteUserWithInvalidId(int id) {
         reqresAPI.deleteUser(id);

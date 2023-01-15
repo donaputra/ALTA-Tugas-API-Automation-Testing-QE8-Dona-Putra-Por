@@ -16,13 +16,13 @@ public class ReqresAPI {
     public static String LOGIN_USERS = Constant.BASE_URL + "/api/login"; //untuk URL login users
     public static String REGISTER_USERS = Constant.BASE_URL + "/api/register"; //untuk URL Register users
 
-    //Method
+    //METHOD
     @Step("Get list users") //Untuk valid get list user
     public void getListUsers(int page) {
         SerenityRest.given().pathParam("page", page);
     }
 
-    @Step("Get list users invalid") //Untuk valid get list user
+    @Step("Get list users invalid") //Untuk invalid get list user
     public void getListUsersInvalid(String page) {
         SerenityRest.given().pathParam("page", page);
     }
@@ -53,19 +53,10 @@ public class ReqresAPI {
                 .body(json);
     }
 
-//    @Step("Put login user")
-//    public  void putLoginUser(String email, String password, File json){
-//        SerenityRest.given().pathParam("email",email).pathParam("password",password)
-//                .contentType(ContentType.JSON )
-//                .body(json);
-//    }
-
     @Step("Register user")
     public void registerUser(File json) {
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);
     }
-
-
 }

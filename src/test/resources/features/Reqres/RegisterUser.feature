@@ -27,7 +27,7 @@ Feature: Register User feature reqres API
     When Send request post register user
     Then Should return status code 400
     And Response body name should be error as "Missing password"
-    And Validate invalid json schema register
+    And Validate invalid register json schema
 
       #Json file with without email
   @Tugas @NegativeCase

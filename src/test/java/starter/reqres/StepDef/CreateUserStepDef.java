@@ -19,6 +19,7 @@ public class CreateUserStepDef {
     @Steps
     ReqresAPI reqresAPI;
 
+    //Positive Cases
     @Given("Post create user with valid json")
     public void postCreateUserWithValidJson() {
         File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUser.json");
@@ -31,7 +32,7 @@ public class CreateUserStepDef {
     }
 
     @And("Response body name should be {string} and job {string}")
-    public void responseBodyNameShouldBeAndJob(String name, String job) {
+    public void responseBodyNameShouldBeNameAndJob(String name, String job) {
         SerenityRest.then()
                 .body(ReqresResponses.NAME, equalTo(name))
                 .body(ReqresResponses.JOB, equalTo(job));
@@ -39,24 +40,26 @@ public class CreateUserStepDef {
 
     @And("validate json schema create user")
     public void validateJsonSchemaCreateUser() {
-        File jsonSchema = new File(Constant.JSON_SCHEMA + "/CreateUserSchema.json");
+        File jsonSchema = new File(Constant.JSON_SCHEMA_CREATE_USER + "/CreateUserSchema.json");
         SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonSchema));
     }
 
-    //Negative Case with file json_01
+    //Negative Cases
+    //Negative Case with file json invalid string
     @Given("Post create user with invalid string json")
     public void postCreateUserWithInvalidStringJson() {
         File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUserInvalid_String.json");
         reqresAPI.postCreateUser(json);
     }
 
-    //Negative Case with file json_02
+    //Negative Case with file json invalid job
     @Given("Post create user without job json")
     public void postCreateUserWithInvalidJobJson() {
         File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUserInvalid_Job.json");
         reqresAPI.postCreateUser(json);
     }
 
+    //Negative Case with file json invalid name
     @And("Post create user with invalid name json")
     public void postCreateUserWithInvalidNameJson() {
         File json = new File(Constant.JSON_REQUEST_CREATE_USER + "/RequestCreateUserInvalid_Name.json");
